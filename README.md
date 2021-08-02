@@ -284,7 +284,7 @@ This program uses two main libraries which are specified in the pom.xml file.
 
 2) From the top bar menu choose File -> Import -> Maven -> Existing Maven Projects -> Next -> Browse (choose the project's directory: ".../Deliverables/DescriptiveModelingClusteringTextualData") -> Finish.
 
-  
+  ![alt text](https://github.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_4_1.png?raw=true)
 
 3) Maven should now be building the project according to the dependencies listed on pom.xml. Wait until this process finishes.
 
