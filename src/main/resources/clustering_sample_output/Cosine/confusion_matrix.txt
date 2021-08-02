@@ -1,0 +1,9 @@
+Columns are Predicted Class and Rows are Actual Class
+,DISEASE,FINANCE,AERONAUTICS_ORGANIZATION,
+DISEASE,8,0,0,
+FINANCE,0,8,0,
+AERONAUTICS_ORGANIZATION,0,0,8,
+
+Model Precision: 1.0
+Model Recall: 1.0
+Model F-Score: 1.0
