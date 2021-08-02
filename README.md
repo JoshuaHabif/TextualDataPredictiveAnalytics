@@ -155,7 +155,7 @@ For k=5, we obtain the following confusion matrix, which of course is diagonal. 
 |----|----|----|----|
 | **C1** | 5  | 0  | 0  |
 | **C4** | 0  | 3  | 0  |
-| **C7** | 0  | 2  | 0  |
+| **C7** | 0  | 0  | 2  |
 
 
   
