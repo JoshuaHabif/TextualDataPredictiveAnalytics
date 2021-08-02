@@ -215,13 +215,13 @@ public class Article {
 		}
 		catch(Exception IOException) {
 			//System.err.println("Error while reading the file. Trying to read again.");
+			try {
+				this.content = new String(Files.readAllBytes(Paths.get(getFileName())));
+			}
+			catch(Exception IOExceptionTwo) {
+				System.err.println("Error while reading the file. Check file encoding.");
+			}
 		}	
-		try {
-			this.content = new String(Files.readAllBytes(Paths.get(getFileName())));
-		}
-		catch(Exception IOException) {
-			System.err.println("Error while reading the file. Check file encoding.");
-		}
 	}
 	
 	public void setContent(String newContent) {
