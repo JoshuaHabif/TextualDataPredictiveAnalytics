@@ -284,7 +284,7 @@ This program uses two main libraries which are specified in the pom.xml file.
 
 2) From the top bar menu choose File -> Import -> Maven -> Existing Maven Projects -> Next -> Browse (choose the project's directory: ".../Deliverables/DescriptiveModelingClusteringTextualData") -> Finish.
 
-  ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_4_1.png?raw=true)
+
 
 3) Maven should now be building the project according to the dependencies listed on pom.xml. Wait until this process finishes.
 
@@ -292,18 +292,19 @@ This program uses two main libraries which are specified in the pom.xml file.
 
 4) You should now see "hw-one" in the package explorer window. Select this project and right click select "Run As" -> "Run Configurations". Under "Main": enter the Project name "hw-one" and the Main class "preprocessing.Preprocessing". Under Arguments enter the Program arguments: the program argument for preprocessing.Preprocessing is the resources path. e.g., "/home/joshua/Downloads/DescriptiveModelingClusteringTextualData/src/main/resources/".
 
-  
+    ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_4_1.png?raw=true)
+      ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_4_2.png?raw=true)
 
   
 
 5) In Run Configurations select Run. The program will generate a file called "normalize" and save it to the Resources directory you provided in step 4. You should also see a message printed to the console notifying you that normalize was saved to the Resources directory.
 
-  
+    ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_5.png?raw=true)
 
 6) We now run the second part of the program: Select "hw-one" in the Package Explorer, right click select "Run As" -> "Run Configurations": Under Main the Project name is the same ("hw-one") and the Main class is "clustering.Main". Under Arguments the program's argument is the same Resources folder you provided for preprocessing.Preprocessing. Click "Run".
 
-  
-
+    ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_6_1.png?raw=true)
+  ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_6_2.png?raw=true)
 7) You should now see the F-Score printed to the console along with the output files saved in Resources.
 
   
