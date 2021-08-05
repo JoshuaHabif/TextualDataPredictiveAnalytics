@@ -65,6 +65,10 @@ Model Precision: 0.30
 Model Recall: 0.87
 Model F-Score: 0.45
 
+![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/clustering_sample_output/clusters_euclidean_original.png?raw=true)
+
+![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/clustering_sample_output/clusters_euclidean.png?raw=true)
+
 |  | Disease | Finance | Aeronautics Organization |
 |--------------------------|---------|---------|--------------------------|
 | **Disease** | 0 | 0 | 8  |
