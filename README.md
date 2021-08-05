@@ -57,9 +57,9 @@ Now that K-Means clustering has been performed, we predict each document's topic
 
 We run clustering with a Euclidean and Cosine distance metric and conclude that Cosine performs better (F-score of 1 vs. 0.45). To visualize these results, we perform Principal Component Analysis and visualize the results using Plotly. For each metric, we provide two scatter plots where points represent documents and their color represent their topic. We also provide a confusion matrix, and scores for each metric.
 
-  
-
-#### Euclidean
+```diff
+@@ ### Euclidean@@
+```
 
 Model Precision: 0.30
 Model Recall: 0.87
@@ -80,6 +80,10 @@ Model F-Score: 0.45
 Model Precision: 1.0
 Model Recall: 1.0
 Model F-Score: 1.0
+
+![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/clustering_sample_output/clusters_cosine_original.png?raw=true)
+
+![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/clustering_sample_output/clusters_cosine.png?raw=true)
 
 
 |  | Disease | Finance | Aeronautics Organization |
