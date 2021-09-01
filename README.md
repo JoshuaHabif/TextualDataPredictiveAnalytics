@@ -5,7 +5,7 @@
 
 ## About the Author
 
-My name is Joshua Habif and I'm a senior at New York University, Courant Institute of Mathematical Sciences, pursuing an undergraduate degree in Mathematics and Computer Science. This project was developed as a part of a Predictive Analytics course I took in Summer 2021 with Professor Anasse Bari who first introduced me to the exciting world of Data Science.
+My name is Joshua Habif and I'm a senior at New York University (CAS) pursuing an undergraduate degree in Mathematics and Computer Science. This project was developed as a part of a Predictive Analytics course I took in Summer 2021 with Professor Anasse Bari who introduced me to the exciting world of Data Science.
 
   
 
@@ -15,7 +15,7 @@ Feel free to contact me at jh5653 (at) nyu (dot) edu.
 
 ## Introduction
 
-In this project we pre-process a collection of news articles using Natural Language Processing, group similar articles together using our own implementation of the popular K-Means++ algorithm, predict each article's topic based on the unsupervised learning results, and use the predicted labels to classify new articles using the K-Nearest-Neighbors algorithm. We provide an interactive visualization of the clusters, and performance analysis of the classification.
+In this project I pre-process a collection of news articles using Natural Language Processing, group similar articles together using my own implementation of the popular K-Means++ algorithm, predict each article's topic based on the unsupervised learning results, and use the predicted labels to classify new articles using the K-Nearest-Neighbors algorithm. I provide an interactive visualization of the clusters, and performance analysis of the classification.
 
   
 
@@ -25,37 +25,37 @@ The aim of this project is three-fold:
 
 ### Pre-Processing
 
-We wish to transform text articles into vectors whose dimensions represent self-contained concepts. Each concept can be thought of as an article property. For example, when reading an article about, say, commercial Airlines we observe industry specific terminology and jargon such as "airline safety," "pilot," and "engine failure." Naturally, these terms are interpreted and understood by a reader in the context of the airline industry. As an illustration, the term "engine failure" can be used to denote an automobile engine failure in one context, and airplane engine failure in another context. This presents a problem to computers who don't naturally *understand* meaning within context, partly because we have yet formalized context. With this in mind, the main goal of the first part of the project is to structure natural text into vectors whose dimensions represent self-contained ideas and entries represent the *strength* of each concept.
+I wish to transform text articles into vectors whose dimensions represent self-contained concepts. Each concept can be thought of as an article property. For example, when reading an article about, say, commercial Airlines we observe industry specific terminology and jargon such as "airline safety," "pilot," and "engine failure." Naturally, these terms are interpreted and understood by a reader in the context of the airline industry. As an illustration, the term "engine failure" can be used to denote an automobile engine failure in one context, and airplane engine failure in another context. This presents a problem for computers who don't naturally *understand* meaning within context, partly because we have yet formalized context. With this in mind, the main goal of the first part of the project is to structure natural text into vectors whose dimensions represent self-contained ideas and entries represent the *strength* of each concept.
 
   
 
-To this end, a human exploratory scan of the articles is performed to determine what common themes and patterns separate certain articles from others.  This scan reveals that articles about, say, mortgage rates, mention some variant of the word pair "mortgage" and "rates." Sometimes the pair appears as "mortgage rate," and other times it appears as "mortgage rate**s**." We conclude that these pairs are equivalent in the sense that they both signal that this article is discussing mortgage rates, so we apply stemming and lemmatization to be able to systematically identify these pairs as the same. Our scan also reveals that some word permutations that are indicative of an article's topic aren't amenable to this kind of systematic analysis, so we use Name Entity Extraction to address these concepts. Finally, we search the tokenized text for n-grams, which are commonly co-occuring n terms.
+To this end, I scan each article. This scan reveals that articles about, say, mortgage rates, mention some variant of the word pair "mortgage" and "rates." Sometimes the pair appears as "mortgage rate," and other times it appears as "mortgage rate**s**." I conclude that these pairs are equivalent in the sense that they both signal that this article is discussing mortgage rates, so I apply stemming and lemmatization to be able to systematically identify these pairs as the same. My scan also reveals that some word permutations that are indicative of an article's topic aren't amenable to this kind of systematic analysis, so we use Name Entity Extraction to address these concepts. Finally, I search the tokenized text for n-grams.
 
   
 
-Natural text includes words that aren't indicative of the text's topic such as stop-words, which include conjunctions, pronouns, and other parts of speech which generally *glue* together words. Therefore, we remove those along with punctuation tokens.
+Natural text includes words that aren't indicative of the text's topic such as stop-words, which include conjunctions, pronouns, and other parts of speech which generally *glue* together dependent clauses. Therefore, we remove those along with punctuation tokens.
 
   
 
-At this point we've converted text documents into vectors that represent concepts and an associated strength. This strength is simply a count of how many times a concept appears in the document. Some concepts are quite strong in all vectors so they don't contribute to our clustering efforts, and documents are of varying lengths causing documents with the same concepts have a strength that is often proportional to the length of the document. Therefore, we apply Term-Frequency-Inverse-Term-Frequency to normalize the strengths of the concepts and lower the strength of concepts that occur across many documents. The strength of the concept is lowered in proportion to the number of documents that contain it. The more documents contain a concept, the larger its decrease in strength.
+At this stage, I've converted text documents into vectors that represent concepts and an associated strength. This strength is simply a count of how many times a concept appears in the document. Some concepts are quite strong in all vectors so they don't contribute to my clustering efforts, and documents of varying lengths have varying strengths of repetition. Therefore, I apply Term-Frequency-Inverse-Term-Frequency to normalize the strengths of the concepts and lower the strength of concepts that occur across many documents. The strength of the concept is lowered in proportion to the number of documents that contain it -- the more documents contain a concept, the larger its decrease in strength.
 
   
 
-Now that we have a normalized set of vectors, we may proceed to cluster them.
+Having a 'normalized' set of vectors, I proceeded to cluster them.
 
   
 
 ### Clustering
 
-We implement the K-Means algorithm to cluster similar documents. Our algorithm converges quickly due to a conscious choice of initial centroids. Namely, we take the set of vectors generated in the previous part, add them together, and divide by the size of that set to obtain the *average vector*. The first centroid is then chosen to be the vector whose minimum distance to the *average vector* is maximized. We choose centroid k-1 by finding the vector whose minimum distance from centroid k is maximized. Now that we have two centroids, we compute the distance between every vector in our set to our two centroids. Centroid k-2 is chosen to be the vector whose minimum distance to centroid k and k-1 is maximized. This process continues until k initial centroids are obtained. An interesting observation is that plotting the initial centroids in Euclidean space and drawing a line between them produces a triangular shape for k=3.
+I implemented the K-Means algorithm to cluster similar documents. My algorithm converges quickly due to a conscious choice of initial centroids. Namely, I take the set of vectors generated in the previous part, add them together, and divide by the size of that set to obtain the *average vector*. The first centroid is then chosen to be the vector whose minimum distance to the *average vector* is maximized. I choose centroid k-1 by finding the vector whose minimum distance from centroid k is maximized. Now that I have two centroids, I compute the distance between every vector in the set to the two centroids. Centroid k-2 is chosen to be the vector whose minimum distance to centroid k and k-1 is maximized. This process continues until k initial centroids are obtained.
 
   
 
-Now that K-Means clustering has been performed, we predict each document's topic by choosing the concept whose strength is largest across all documents in a cluster. We construct a confusion matrix using our knowledge of what the true topics are, and provide the accuracy, precision, recall, and F-measure.
+Now that K-Means clustering has been performed, I predict each document's topic by choosing the concept whose strength is largest across all documents in a cluster. I construct a confusion matrix using my knowledge of what the topics are, and provide the accuracy, precision, recall, and F-measure.
 
   
 
-We run clustering with a Euclidean and Cosine distance metric and conclude that Cosine performs better (F-score of 1 vs. 0.45). To visualize these results, we perform Principal Component Analysis and visualize the results using Plotly. For each metric, we provide two scatter plots where points represent documents and their color represent their topic. We also provide a confusion matrix, and scores for each metric.
+I run clustering with a Euclidean and Cosine distance metric and conclude that Cosine performs better (F-score of 1 vs. 0.45). To visualize these results, I perform Principal Component Analysis and visualize the results using Plotly. For each metric, I provide two scatter plots where points represent documents and their color represent their topic. I also provide a confusion matrix, and scores for each metric.
 
 
 ### Euclidean
@@ -68,6 +68,7 @@ Model F-Score: 0.45
 
 ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/clustering_sample_output/clusters_euclidean.png?raw=true)
 
+(Column labels represnet the predicted class, whereas rows represnt the actual class)
 |  | Disease | Finance | Aeronautics Organization |
 |--------------------------|---------|---------|--------------------------|
 | **Disease** | 0 | 0 | 8  |
@@ -84,7 +85,7 @@ Model F-Score: 1.0
 
 ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/clustering_sample_output/clusters_cosine.png?raw=true)
 
-
+(Column labels represnet the predicted class, whereas rows represnt the actual class)
 |  | Disease | Finance | Aeronautics Organization |
 |--------------------------|---------|---------|--------------------------|
 | **Disease**  | 8 | 0 | 0  |
@@ -99,25 +100,25 @@ Model F-Score: 1.0
 
 ### Classification
 
-Equipped with the clusters and their predicted label from the previous part, we wish to determine the topic of a new article. To this end, we apply the same pre-processing procedure presented in part one to the new document, with a slight modification: instead of including the Inverse-Term-Frequency component in the computation, we retain the Term-Frequency component. The resulting vector represents concepts and their associated strength, normalized by the document size.
+Equipped with the clusters and their predicted label from the previous part, I wish to determine the topic of a new article. To this end, I apply the same pre-processing procedure presented in part one to the new document, with a slight modification: instead of including the Inverse-Term-Frequency component in the computation, I retain the Term-Frequency component. The resulting vector represents concepts and their associated strength, normalized by the document size.
 
   
 
-We then apply the K-Nearest-Neighbors algorithm to determine the k most similar documents to the new document, and return a topic determined by the topic of the majority its the K-Nearest-Neighbors.
+I then apply the K-Nearest-Neighbors algorithm to determine the k most similar documents to the new document, and return a topic determined by the topic of the majority its the K-Nearest-Neighbors.
 
   
 
-Sometimes a new document might be, say, x% of class A, (x-i%) of class B, (x-j%) of class C, etc. Therefore, we also include the option run *Fuzzy*-KNN which returns a labels along with their respective percentage instead of a single label.
+Sometimes a new document might be, say, x% of class A, y% of class B, z% of class C, etc. Therefore, we also include the option run *Fuzzy*-KNN which returns  labels along with their associated percentage instead of a single label.
 
   
 
   
 
-Finally, we use our knowledge of the real topics of each of the new documents to produce a confusion matrix, and provide the accuracy, precision, and recall of our classification model.
+Finally, I use the class labels to produce a confusion matrix, and provide the accuracy, precision, and recall of our classification model.
 
   
 
-To optimize these performance measures, we run the algorithm for every value of k and obtain the following results:
+To optimize these performance measures, I run the algorithm for every value of k (since 23 is small) and obtain the following results:
 
   
 
@@ -149,14 +150,14 @@ To optimize these performance measures, we run the algorithm for every value of 
 
   
 
-Evidently, when k is 1, 2, 3, 5, 10, 11, 15, 17, or 18 the algorithm classifies the new documents correctly. Due to the small size of the testing (=10) and training set (=24) we guess that lower values of k should be chosen, and decide that the best value of k is **5**.
+Evidently, when k is 1, 2, 3, 5, 10, 11, 15, 17, or 18 the algorithm classifies the new documents correctly. Due to the small size of the testing (=10) and training set (=24) I guess that lower values of k should be chosen, and decide that an appropriate value of k is **5**.
 
   
 
-For k=5, we obtain the following confusion matrix, which of course is diagonal. Columns represent the predicted, classified, class, and rows represent the actual class:
+For k=5, I obtain the following confusion matrix, which of course is diagonal. 
 
   
-
+(Column labels represnet the predicted class, whereas rows represnt the actual class)
 
 |  | C1 | C4 | C7 |
 |----|----|----|----|
@@ -210,7 +211,7 @@ Accuracy: 1.00
 
 ```
 
-For Fuzzy-KNN, we don't provide performance analysis:
+For Fuzzy-KNN, I don't define performance analysis:
 
 ```console
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
@@ -234,14 +235,14 @@ Predicted Class Label of document unknown/unknown10.txt is: 80.00% about AERONAU
 
 ## Definitions
 
-We use the following definitions:
+I use the following definitions:
 
 
-- Precision = fraction of instances where we correctly declared i out of all the instances where we declared i. We take the mean of all precisions to get a final precision value.
+- Precision = fraction of instances where the model correctly declared i out of all the instances where it declared i. I take the mean of all precisions to get a final precision value.
 
   
 
-- Recall = fraction of instances where we correctly declared i out of all of the cases where the true state of the instance is i.
+- Recall = fraction of instances where the model correctly declared i out of all of the cases where the true state of the instance is i.
 
   
 
@@ -249,17 +250,16 @@ We use the following definitions:
 
   
 
-For visualization we use PCA on the TFIDF matrix to extract the three most important components.
+For visualization I use PCA on the TFIDF matrix to project the articles onto the three principal componenets.
 
-We use Python's Plotly library to visualize the results and export the interactive graphs as HTML files to the resources folder.
+I use Python's Plotly library to visualize the results and export the interactive graphs as HTML files to the resources folder. 
+
+  
+If you'd like to visualize the performance of the program, run Main.java in clustering and use the resultant file pca_tfidf.csv and use the Python file plot.py to generate two HTML files representing the original clusters and the programs' clusters.
 
   
 
-If you would like to visualize the performance of the program run Main.java in clustering and use the resultant file pca_tfidf.csv and use the Python file plot.py to generate two HTML files representing the original clusters and the programs' clusters.
-
-  
-
-The plots are interactive HTML scatter plots. Open them using any browser.
+The plots are interactive HTML scatter plots -- open them using any popular browser.
 
   
 
