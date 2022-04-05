@@ -25,15 +25,15 @@ The aim of this project is three-fold:
 
 ### Pre-Processing
 
-I wish to transform text articles into vectors whose dimensions represent self-contained concepts. Each concept can be thought of as an article property. For example, when reading an article about, say, commercial Airlines we observe industry specific terminology and jargon such as "airline safety," "pilot," and "engine failure." Naturally, these terms are interpreted and understood by a reader in the context of the airline industry. As an illustration, the term "engine failure" can be used to denote an automobile engine failure in one context, and airplane engine failure in another context. This presents a problem for computers who don't naturally *understand* meaning within context, partly because we have yet formalized context. With this in mind, the main goal of the first part of the project is to structure natural text into vectors whose dimensions represent self-contained ideas and entries represent the *strength* of each concept.
+I wish to transform text articles into vectors whose dimensions represent self-contained concepts. Each concept can be thought of as an article property. For example, when reading an article about, say, commercial Airlines I observe industry specific terminology and jargon such as "airline safety," "pilot," and "engine failure." Naturally, these terms are interpreted and understood by a reader in the context of the airline industry. As an illustration, the term "engine failure" can be used to denote an automobile engine failure in one context, and airplane engine failure in another context. This presents a problem for computers who don't naturally *understand* meaning within context, partly because I have yet formalized context. With this in mind, the main goal of the first part of the project is to structure natural text into vectors whose dimensions represent self-contained ideas and entries represent the *strength* of each concept.
 
   
 
-To this end, I scan each article. This scan reveals that articles about, say, mortgage rates, mention some variant of the word pair "mortgage" and "rates." Sometimes the pair appears as "mortgage rate," and other times it appears as "mortgage rate**s**." I conclude that these pairs are equivalent in the sense that they both signal that this article is discussing mortgage rates, so I apply stemming and lemmatization to be able to systematically identify these pairs as the same. My scan also reveals that some word permutations that are indicative of an article's topic aren't amenable to this kind of systematic analysis, so we use Name Entity Extraction to address these concepts. Finally, I search the tokenized text for n-grams.
+To this end, I scan each article. This scan reveals that articles about, say, mortgage rates, mention some variant of the word pair "mortgage" and "rates." Sometimes the pair appears as "mortgage rate," and other times it appears as "mortgage rate**s**." I conclude that these pairs are equivalent in the sense that they both signal that this article is discussing mortgage rates, so I apply stemming and lemmatization to be able to systematically identify these pairs as the same. My scan also reveals that some word permutations that are indicative of an article's topic aren't amenable to this kind of systematic analysis, so I use Name Entity Extraction to address these concepts. Finally, I search the tokenized text for n-grams.
 
   
 
-Natural text includes words that aren't indicative of the text's topic such as stop-words, which include conjunctions, pronouns, and other parts of speech which generally *glue* together dependent clauses. Therefore, we remove those along with punctuation tokens.
+Natural text includes words that aren't indicative of the text's topic such as stop-words, which include conjunctions, pronouns, and other parts of speech which generally *glue* together dependent clauses. Therefore, I remove those along with punctuation tokens.
 
   
 
@@ -114,7 +114,7 @@ Sometimes a new document might be, say, x% of class A, y% of class B, z% of clas
 
   
 
-Finally, I use the class labels to produce a confusion matrix, and provide the accuracy, precision, and recall of our classification model.
+Finally, I use the class labels to produce a confusion matrix, and provide the accuracy, precision, and recall of  classification model.
 
   
 
@@ -308,7 +308,7 @@ This program uses two main libraries which are specified in the pom.xml file.
 
     ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_5.png?raw=true)
 
-6) We now run the second part of the program: Select "hw-one" in the Package Explorer, right click select "Run As" -> "Run Configurations": Under Main the Project name is the same ("hw-one") and the Main class is "clustering.Main". Under Arguments the program's argument is the same Resources folder you provided for preprocessing.Preprocessing. Click "Run".
+6) I now run the second part of the program: Select "hw-one" in the Package Explorer, right click select "Run As" -> "Run Configurations": Under Main the Project name is the same ("hw-one") and the Main class is "clustering.Main". Under Arguments the program's argument is the same Resources folder you provided for preprocessing.Preprocessing. Click "Run".
 
     ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_6_1.png?raw=true)
   ![alt text](https://raw.githubusercontent.com/JoshuaHabif/TextualDataPredictiveAnalytics/main/src/main/resources/Project%20Setup%20Screenshots/step_6_2.png?raw=true)
@@ -330,7 +330,7 @@ This program uses two main libraries which are specified in the pom.xml file.
 
   
 
-8) Now we can run the third part of the program which classifies new documents. Right click the project, and select run configurations. Under run configurations, specify "classifying.Main" is the main class, and provide the "Resources" folder path as a command line argument. Click "Run." You should now see the results printed to console, along with performance metrics. A confusion matrix has also been saved to the resources folder. If you wish to change the parameters, and run Fuzzy KNN, go to classifying.Main and change the final static class variables.
+8) Now I can run the third part of the program which classifies new documents. Right click the project, and select run configurations. Under run configurations, specify "classifying.Main" is the main class, and provide the "Resources" folder path as a command line argument. Click "Run." You should now see the results printed to console, along with performance metrics. A confusion matrix has also been saved to the resources folder. If you wish to change the parameters, and run Fuzzy KNN, go to classifying.Main and change the final static class variables.
 
   
 
