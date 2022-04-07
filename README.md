@@ -37,17 +37,19 @@ Natural text includes words that aren't indicative of the text's topic such as s
 
   
 
-At this stage, I've converted text documents into vectors that represent concepts and an associated strength. This strength is simply a count of how many times a concept appears in the document. Some concepts are quite strong in all vectors so they don't contribute to my clustering efforts, and documents of varying lengths have varying strengths of repetition. Therefore, I apply Term-Frequency-Inverse-Term-Frequency to normalize the strengths of the concepts and lower the strength of concepts that occur across many documents. The strength of the concept is lowered in proportion to the number of documents that contain it -- the more documents contain a concept, the larger its decrease in strength.
+At this stage, I've converted text documents into vectors that represent concepts and an associated strength. This strength is simply a count of how many times a concept appears in the document. Some concepts are quite strong in all vectors so they don't contribute to my clustering efforts, and documents of varying lengths have varying strengths of repetition. Therefore, I apply Term-Frequency-Inverse-Term-Frequency to normalize the strengths of the concepts and lower the strength of concepts that occur across many documents. The strength of the concept is lowered in proportion to the number of documents that contain it -- the more documents contain a concept, the larger the decrease in strength.
 
   
 
-Having a 'normalized' set of vectors, I proceeded to cluster them.
+Having a 'normalized' set of vectors, I proceed to cluster them.
 
   
 
 ### Clustering
 
-I implemented the K-Means algorithm to cluster similar documents. My algorithm converges quickly due to a conscious choice of initial centroids. Namely, I take the set of vectors generated in the previous part, add them together, and divide by the size of that set to obtain the *average vector*. The first centroid is then chosen to be the vector whose minimum distance to the *average vector* is maximized. I choose centroid k-1 by finding the vector whose minimum distance from centroid k is maximized. Now that I have two centroids, I compute the distance between every vector in the set to the two centroids. Centroid k-2 is chosen to be the vector whose minimum distance to centroid k and k-1 is maximized. This process continues until k initial centroids are obtained.
+I implemented the K-Means algorithm to cluster similar documents. My algorithm converges quickly due to a conscious choice of initial centroids. This choice is arived at using a metric I refer to as the minimum distance -- In Cartesian space, we can measure the minimum distance between two points as the length of the straight line connecting them. This length is called the Euclidean Distance.
+
+With this in mind, I take the set of vectors generated in the previous part, add them together, and divide by the size of that set to obtain the *average vector*. The first centroid is then chosen to be the vector whose minimum distance to the *average vector* is maximized. I choose centroid k-1 by finding the vector whose minimum distance from centroid k is maximized. Now that I have two centroids, I compute the distance between every vector in the set to the two centroids. Centroid k-2 is chosen to be the vector whose minimum distance to centroid k and k-1 is maximized. This process continues until k initial centroids are obtained.
 
   
 
@@ -55,7 +57,7 @@ Now that K-Means clustering has been performed, I predict each document's topic 
 
   
 
-I run clustering with a Euclidean and Cosine distance metric and conclude that Cosine performs better (F-score of 1 vs. 0.45). To visualize these results, I perform Principal Component Analysis and visualize the results using Plotly. For each metric, I provide two scatter plots where points represent documents and their color represent their topic. I also provide a confusion matrix, and scores for each metric.
+I run clustering with a Euclidean and Cosine distance metric and conclude that Cosine performs better (F-score of 1 vs. 0.45). To visualize these results, I perform Principal Component Analysis to project the clustres onto a 3-D space, and visualize the results using Plotly. For each metric, I provide two scatter plots where points represent documents and their color represent their topic. I also provide a confusion matrix, and scores for each metric.
 
 
 ### Euclidean
@@ -91,6 +93,8 @@ Model F-Score: 1.0
 | **Disease**  | 8 | 0 | 0  |
 | **Finance**  | 0 | 8 | 0  |
 | **Aeronautics Organization** | 0 | 0 | 8  |
+*Note: notice that this matrix is diagonal, meaning that the topics were predicted with %100 accuracy. Evidently, Cosine distance is far more successful at predicting the topics compared to Euclidean distance.* 
+
 
   
 
@@ -108,13 +112,13 @@ I then apply the K-Nearest-Neighbors algorithm to determine the k most similar d
 
   
 
-Sometimes a new document might be, say, x% of class A, y% of class B, z% of class C, etc. Therefore, we also include the option run *Fuzzy*-KNN which returns  labels along with their associated percentage instead of a single label.
+Sometimes a new document might be, say, x% of class A, y% of class B, z% of class C, etc. Therefore, I also include the option run *Fuzzy*-KNN which returns labels along with their associated percentage instead of a single label.
 
   
 
   
 
-Finally, I use the class labels to produce a confusion matrix, and provide the accuracy, precision, and recall of  classification model.
+Finally, I use the class labels to produce a confusion matrix, and provide the accuracy, precision, and recall of the classification model.
 
   
 
@@ -235,7 +239,7 @@ Predicted Class Label of document unknown/unknown10.txt is: 80.00% about AERONAU
 
 ## Definitions
 
-I use the following definitions:
+I use the following definitions, which were motivated by https://stats.stackexchange.com/questions/51296/how-do-you-calculate-precision-and-recall-for-multiclass-classification-using-co:
 
 
 - Precision = fraction of instances where the model correctly declared i out of all the instances where it declared i. I take the mean of all precisions to get a final precision value.
