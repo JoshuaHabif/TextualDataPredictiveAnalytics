@@ -93,6 +93,7 @@ Model F-Score: 1.0
 | **Disease**  | 8 | 0 | 0  |
 | **Finance**  | 0 | 8 | 0  |
 | **Aeronautics Organization** | 0 | 0 | 8  |
+
 *Note: notice that this matrix is diagonal, meaning that the topics were predicted with %100 accuracy. Evidently, Cosine distance is far more successful at predicting the topics compared to Euclidean distance.* 
 
 
